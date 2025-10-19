@@ -129,3 +129,12 @@
 .robot-card.selected .robot-status {
   background: #10b981;
 }
+
+.robot-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #2f80ed;
+  color: white;
+  font-weight: 500;
+}
