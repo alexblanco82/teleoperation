@@ -1,0 +1,131 @@
+.robot-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.robot-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.robot-selector-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9fb3c8;
+}
+
+.refresh-button {
+  background: #2a3c51;
+  color: #e8eef5;
+  border: 1px solid #203044;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.refresh-button:hover {
+  background: #334a66;
+  transform: translateY(-1px);
+}
+
+.refresh-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.robot-selector-empty {
+  padding: 24px;
+  text-align: center;
+  background: #0f151e;
+  border: 1px dashed #203044;
+  border-radius: 10px;
+  color: #6b7280;
+}
+
+.robot-selector-empty p {
+  margin: 0 0 8px 0;
+}
+
+.robot-selector-tip {
+  font-size: 12px;
+  color: #89a3bb;
+}
+
+.robot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.robot-card {
+  background: #0f151e;
+  border: 2px solid #203044;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.robot-card:hover {
+  border-color: #2f80ed;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.2);
+}
+
+.robot-card.selected {
+  border-color: #2f80ed;
+  background: rgba(47, 128, 237, 0.1);
+}
+
+.robot-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #e8eef5;
+}
+
+.robot-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.robot-card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.robot-status {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #10b981;
+  color: white;
+}
+
+.robot-card .robot-status {
+  background: #6b7280;
+}
+
+.robot-card.selected .robot-status {
+  background: #10b981;
+}

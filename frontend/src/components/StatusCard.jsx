@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/StatusCard.css';
 
-const StatusCard = ({ status, joystickPosition }) => {
+const StatusCard = ({ status, joystickPosition, selectedRobot }) => {
   const getStatusColor = () => {
     switch (status) {
       case 'Connected':
@@ -23,6 +23,15 @@ const StatusCard = ({ status, joystickPosition }) => {
         </div>
         <div className="status-text">{status}</div>
       </div>
+      
+      {selectedRobot && (
+        <div className="robot-info">
+          <div className="info-row">
+            <span className="info-label">Robot:</span>
+            <span className="info-value">{selectedRobot.name || selectedRobot.id}</span>
+          </div>
+        </div>
+      )}
       
       {status === 'Connected' && (
         <div className="velocity-info">

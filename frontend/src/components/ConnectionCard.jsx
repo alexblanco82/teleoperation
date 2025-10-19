@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import '../styles/ConnectionCard.css';
 
-const ConnectionCard = ({ rosbridgeUrl, setRosbridgeUrl, onConnect, onDisconnect, isConnected }) => {
+const ConnectionCard = ({ rosbridgeUrl, setRosbridgeUrl, onConnect, onDisconnect, isConnected, selectedRobot }) => {
   return (
     <div className="connection-card card">
       <div className="connection-row">
@@ -21,13 +21,21 @@ const ConnectionCard = ({ rosbridgeUrl, setRosbridgeUrl, onConnect, onDisconnect
           <Button 
             onClick={isConnected ? onDisconnect : onConnect}
             className={`connection-button ${isConnected ? 'connected' : ''}`}
+            disabled={!selectedRobot}
           >
             {isConnected ? 'Disconnect' : 'Connect'}
           </Button>
         </div>
       </div>
       <p className="connection-tip">
-        Tip: Robot over Tailscale is at ws://100.64.252.45:9090 from the VPS. This page proxies via Nginx.
+        {selectedRobot ? (
+          <>
+            Selected robot: <strong>{selectedRobot.name || selectedRobot.id}</strong> • 
+            Robot over Tailscale proxies via Nginx
+          </>
+        ) : (
+          'Please select a robot above to enable connection'
+        )}
       </p>
     </div>
   );
