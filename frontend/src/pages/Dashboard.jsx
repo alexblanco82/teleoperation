@@ -174,34 +174,48 @@ const Dashboard = () => {
           <div className="camera-row">
             <CameraFeed 
               title="Front Camera"
-              stream={mockCameras.front}
+              stream={cameraStreams.front}
               topic="/usb_front/usb_cam/image_raw"
+              device="/dev/video0"
             />
             <CameraFeed 
               title="Rear Camera"
-              stream={mockCameras.back}
+              stream={cameraStreams.back}
               topic="/usb_back/usb_cam/image_raw"
+              device="/dev/video1"
             />
           </div>
           
           <div className="camera-row">
             <CameraFeed 
               title="Left Camera"
-              stream={mockCameras.left}
+              stream={cameraStreams.left}
               topic="/usb_left/usb_cam/image_raw"
+              device="/dev/video2"
             />
             <CameraFeed 
               title="Right Camera"
-              stream={mockCameras.right}
+              stream={cameraStreams.right}
               topic="/usb_right/usb_cam/image_raw"
+              device="/dev/video3"
             />
           </div>
 
           <div className="camera-full">
             <CameraFeed 
               title="Internal Camera"
-              stream={mockCameras.internal}
+              stream={cameraStreams.internal}
               topic="/usb_internal/usb_cam/image_raw"
+              device="/dev/video8"
+            />
+          </div>
+          
+          <div className="camera-full">
+            <CameraFeed 
+              title="RealSense Depth Camera"
+              stream={cameraStreams.depth}
+              topic="/camera/color/image_raw"
+              device="/dev/video10"
             />
           </div>
         </div>
