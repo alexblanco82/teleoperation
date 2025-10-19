@@ -47,10 +47,15 @@ const RobotSelector = ({ robots, selectedRobot, onSelectRobot, onRefresh, isLoad
                 <span className="robot-status">
                   {robot.online ? 'Online' : 'Offline'}
                 </span>
+                {robot.manual && <span className="robot-badge">Manual</span>}
               </div>
             </div>
           ))}
         </div>
+      )}
+      
+      {robots.length > 0 && (
+        <ManualRobotAdd onAddRobot={onAddRobot} />
       )}
     </div>
   );
