@@ -8,7 +8,7 @@ const RobotSelector = ({ robots, selectedRobot, onSelectRobot, onRefresh, isLoad
     <div className="robot-selector card">
       <div className="robot-selector-header">
         <div className="robot-selector-title">
-          <Robot size={16} />
+          <Bot size={16} />
           <label className="field-label">Select Robot</label>
         </div>
         <Button 
