@@ -69,6 +69,11 @@
   gap: 12px;
 }
 
+.camera-error-hint {
+  font-size: 12px;
+  color: #9fb3c8;
+}
+
 .camera-spinner {
   width: 32px;
   height: 32px;
