@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/CameraFeed.css';
 
-const CameraFeed = ({ title, stream, topic }) => {
+const CameraFeed = ({ title, stream, topic, device }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -19,7 +19,10 @@ const CameraFeed = ({ title, stream, topic }) => {
     <div className="camera-feed card">
       <div className="camera-header">
         <label className="field-label">{title}</label>
-        <span className="camera-topic">{topic}</span>
+        <div className="camera-info">
+          <span className="camera-topic">{topic}</span>
+          {device && <span className="camera-device">{device}</span>}
+        </div>
       </div>
       
       <div className="camera-container">
@@ -33,6 +36,7 @@ const CameraFeed = ({ title, stream, topic }) => {
         {hasError && (
           <div className="camera-placeholder">
             <span>No signal</span>
+            <span className="camera-error-hint">Check if camera is connected and ROS is running</span>
           </div>
         )}
         
