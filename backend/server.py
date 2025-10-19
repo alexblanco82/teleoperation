@@ -11,7 +11,7 @@ import uuid
 from datetime import datetime, timezone
 
 # Import robot router
-from routers import robots
+from routers import robots, camera
 
 
 ROOT_DIR = Path(__file__).parent
