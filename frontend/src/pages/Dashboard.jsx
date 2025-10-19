@@ -118,6 +118,7 @@ const Dashboard = () => {
           onSelectRobot={setSelectedRobot}
           onRefresh={loadRobots}
           isLoading={isLoadingRobots}
+          onAddRobot={handleAddRobot}
         />
 
         {/* Connection Settings */}
