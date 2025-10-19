@@ -5,6 +5,7 @@ import RobotSelector from '../components/RobotSelector';
 import JoystickControl from '../components/JoystickControl';
 import StatusCard from '../components/StatusCard';
 import CameraFeed from '../components/CameraFeed';
+import FleetMap from '../components/FleetMap';
 import { mockCameras, getCameraStreams } from '../mock/data';
 import robotService from '../services/robotService';
 import '../styles/Dashboard.css';
