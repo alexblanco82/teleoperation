@@ -72,3 +72,28 @@
   font-weight: 600;
   font-family: 'Courier New', monospace;
 }
+
+.robot-info {
+  background: #0f151e;
+  border: 1px solid #203044;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 13px;
+  color: #9fb3c8;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #e8eef5;
+  font-weight: 500;
+}
