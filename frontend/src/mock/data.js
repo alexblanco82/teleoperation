@@ -1,17 +1,19 @@
-// Real camera stream URLs for robot at 100.64.252.45
+// Real camera stream URLs - proxied through backend to avoid CORS issues
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+
 export const getCameraStreams = (robotIp, videoPort = '8080') => ({
   // USB camera at port 0:3.4.4
-  usb_main: `http://${robotIp}:${videoPort}/stream?topic=/usb_cam/image_raw`,
+  usb_main: `${BACKEND_URL}/api/camera/stream/${robotIp}/usb_cam/image_raw?port=${videoPort}`,
   
   // RealSense camera streams (2 streams on video9/video10)
-  realsense_color: `http://${robotIp}:${videoPort}/stream?topic=/camera/color/image_raw`,
-  realsense_depth: `http://${robotIp}:${videoPort}/stream?topic=/camera/depth/image_rect_raw`,
+  realsense_color: `${BACKEND_URL}/api/camera/stream/${robotIp}/camera/color/image_raw?port=${videoPort}`,
+  realsense_depth: `${BACKEND_URL}/api/camera/stream/${robotIp}/camera/depth/image_rect_raw?port=${videoPort}`,
   
   // If you add more USB cameras later, they'll appear here
-  front: `http://${robotIp}:${videoPort}/stream?topic=/usb_front/image_raw`,
-  back: `http://${robotIp}:${videoPort}/stream?topic=/usb_back/image_raw`,
-  left: `http://${robotIp}:${videoPort}/stream?topic=/usb_left/image_raw`,
-  right: `http://${robotIp}:${videoPort}/stream?topic=/usb_right/image_raw`
+  front: `${BACKEND_URL}/api/camera/stream/${robotIp}/usb_front/image_raw?port=${videoPort}`,
+  back: `${BACKEND_URL}/api/camera/stream/${robotIp}/usb_back/image_raw?port=${videoPort}`,
+  left: `${BACKEND_URL}/api/camera/stream/${robotIp}/usb_left/image_raw?port=${videoPort}`,
+  right: `${BACKEND_URL}/api/camera/stream/${robotIp}/usb_right/image_raw?port=${videoPort}`
 });
 
 // Mock camera streams - fallback placeholder
