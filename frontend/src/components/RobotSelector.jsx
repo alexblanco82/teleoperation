@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { RefreshCw, Bot } from 'lucide-react';
+import ManualRobotAdd from './ManualRobotAdd';
 import '../styles/RobotSelector.css';
 
-const RobotSelector = ({ robots, selectedRobot, onSelectRobot, onRefresh, isLoading }) => {
+const RobotSelector = ({ robots, selectedRobot, onSelectRobot, onRefresh, isLoading, onAddRobot }) => {
   return (
     <div className="robot-selector card">
       <div className="robot-selector-header">
@@ -24,10 +25,11 @@ const RobotSelector = ({ robots, selectedRobot, onSelectRobot, onRefresh, isLoad
       
       {robots.length === 0 ? (
         <div className="robot-selector-empty">
-          <p>No robots found in Transitive Robotics</p>
+          <p>No robots found</p>
           <p className="robot-selector-tip">
-            Make sure your robots are connected and registered
+            Add your robot manually using Tailscale IP
           </p>
+          <ManualRobotAdd onAddRobot={onAddRobot} />
         </div>
       ) : (
         <div className="robot-grid">
