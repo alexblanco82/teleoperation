@@ -1,0 +1,16 @@
+.app-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #1c2430;
+  background: #0f151e;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #e8eef5;
+}
