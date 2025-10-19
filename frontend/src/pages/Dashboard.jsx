@@ -177,48 +177,24 @@ const Dashboard = () => {
         <div className="camera-grid">
           <div className="camera-row">
             <CameraFeed 
-              title="Front Camera"
-              stream={cameraStreams.front}
-              topic="/usb_front/usb_cam/image_raw"
-              device="/dev/video0"
-            />
-            <CameraFeed 
-              title="Rear Camera"
-              stream={cameraStreams.back}
-              topic="/usb_back/usb_cam/image_raw"
-              device="/dev/video1"
-            />
-          </div>
-          
-          <div className="camera-row">
-            <CameraFeed 
-              title="Left Camera"
-              stream={cameraStreams.left}
-              topic="/usb_left/usb_cam/image_raw"
-              device="/dev/video2"
-            />
-            <CameraFeed 
-              title="Right Camera"
-              stream={cameraStreams.right}
-              topic="/usb_right/usb_cam/image_raw"
-              device="/dev/video3"
-            />
-          </div>
-
-          <div className="camera-full">
-            <CameraFeed 
-              title="Internal Camera"
-              stream={cameraStreams.internal}
-              topic="/usb_internal/usb_cam/image_raw"
+              title="USB Camera (Main)"
+              stream={cameraStreams.usb_main}
+              topic="/usb_cam/image_raw"
               device="/dev/video8"
             />
+            <CameraFeed 
+              title="RealSense Color"
+              stream={cameraStreams.realsense_color}
+              topic="/camera/color/image_raw"
+              device="/dev/video9"
+            />
           </div>
           
           <div className="camera-full">
             <CameraFeed 
-              title="RealSense Depth Camera"
-              stream={cameraStreams.depth}
-              topic="/camera/color/image_raw"
+              title="RealSense Depth"
+              stream={cameraStreams.realsense_depth}
+              topic="/camera/depth/image_rect_raw"
               device="/dev/video10"
             />
           </div>
