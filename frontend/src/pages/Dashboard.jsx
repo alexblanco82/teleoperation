@@ -70,7 +70,14 @@ const Dashboard = () => {
       return;
     }
     
-    // Mock connection
+    // Build WebSocket URL from robot config
+    const wsUrl = selectedRobot.manual 
+      ? `ws://${selectedRobot.tailscale_ip}:${selectedRobot.rosbridge_port}`
+      : rosbridgeUrl;
+    
+    setRosbridgeUrl(wsUrl);
+    
+    // Mock connection (in real implementation, connect to actual WebSocket)
     setConnectionStatus('Connecting...');
     setTimeout(() => {
       setConnectionStatus('Connected');
