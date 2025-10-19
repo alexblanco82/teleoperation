@@ -170,6 +170,9 @@ const Dashboard = () => {
           />
         </div>
 
+        {/* Fleet Map */}
+        <FleetMap />
+
         {/* Camera Grid */}
         <div className="camera-grid">
           <div className="camera-row">
