@@ -8,6 +8,24 @@ declare namespace JSX {
       jwt?: string;
       posesource?: string;
     }, HTMLElement>;
+    
+    'webrtc-video-device': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
+      id?: string;
+      host?: string;
+      ssl?: string;
+      jwt?: string;
+      stream?: string | number;
+      autoplay?: string;
+      count?: string;
+      framerate?: string;
+      height?: string;
+      width?: string;
+      quantizer?: string;
+      source?: string;
+      streamtype?: string;
+      timeout?: string;
+      type?: string;
+    }, HTMLElement>;
   }
 }
 
