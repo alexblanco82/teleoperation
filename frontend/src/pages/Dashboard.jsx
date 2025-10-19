@@ -4,7 +4,7 @@ import ConnectionCard from '../components/ConnectionCard';
 import RobotSelector from '../components/RobotSelector';
 import JoystickControl from '../components/JoystickControl';
 import StatusCard from '../components/StatusCard';
-import CameraFeed from '../components/CameraFeed';
+import WebRTCCamera from '../components/WebRTCCamera';
 import FleetMap from '../components/FleetMap';
 import { mockCameras, getCameraStreams } from '../mock/data';
 import robotService from '../services/robotService';
