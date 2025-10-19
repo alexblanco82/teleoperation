@@ -1,0 +1,61 @@
+.dashboard {
+  min-height: 100vh;
+  background: #0b0f14;
+}
+
+.dashboard-main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.camera-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.camera-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.camera-full {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .control-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .camera-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #111826;
+  border: 1px solid #203044;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #9fb3c8;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
