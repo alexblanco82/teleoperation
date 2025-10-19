@@ -24,7 +24,7 @@ const WebRTCCamera = ({ cameraIndex = 0, title, device }) => {
           id="alexblanco82"
           host="transitiverobotics.com"
           ssl="true"
-          jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFsZXhibGFuY284MiIsImRldmljZSI6ImRfZTIyOGUxM2I5MiIsImNhcGFiaWxpdHkiOiJAdHJhbnNpdGl2ZS1yb2JvdGljcy93ZWJydGMtdmlkZW8iLCJ2YWxpZGl0eSI6ODY0MDAsImlhdCI6MTc1OTkxNDU2Nn0.xrN3CSFV9gTq00LimJFcE9ts4JZcrFQKvKoEPPkN-s4"
+          jwt="LGfIYiaxtY5RxSc5NFsgSELRrXNlcYLi+nRmT93+hkczXQQ0mzhJdjPH8J1uR0W7"
           stream={cameraIndex}
           autoplay="true"
         />
