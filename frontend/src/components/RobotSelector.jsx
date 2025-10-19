@@ -38,7 +38,7 @@ const RobotSelector = ({ robots, selectedRobot, onSelectRobot, onRefresh, isLoad
               onClick={() => onSelectRobot(robot)}
             >
               <div className="robot-card-header">
-                <Robot size={20} />
+                <Bot size={20} />
                 <span className="robot-name">{robot.name || robot.id}</span>
               </div>
               <div className="robot-card-info">
