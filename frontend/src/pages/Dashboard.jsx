@@ -19,37 +19,45 @@ const Dashboard = () => {
   const [isLoadingRobots, setIsLoadingRobots] = useState(false);
   const { toast } = useToast();
 
-  // Load robots on mount
+  // Load robots on mount (check localStorage first)
   useEffect(() => {
-    loadRobots();
+    const savedRobots = localStorage.getItem('botix_robots');
+    if (savedRobots) {
+      const parsedRobots = JSON.parse(savedRobots);
+      setRobots(parsedRobots);
+      if (parsedRobots.length > 0) {
+        setSelectedRobot(parsedRobots[0]);
+      }
+    } else {
+      loadRobots();
+    }
   }, []);
 
   const loadRobots = async () => {
     setIsLoadingRobots(true);
     try {
       const data = await robotService.getRobots();
-      if (data.success) {
+      if (data.success && data.robots.length > 0) {
         setRobots(data.robots);
-        if (data.robots.length > 0) {
-          setSelectedRobot(data.robots[0]);
-        } else {
-          toast({
-            title: 'No robots found',
-            description: 'No robots are currently registered in Transitive Robotics',
-            variant: 'warning'
-          });
-        }
+        setSelectedRobot(data.robots[0]);
+        localStorage.setItem('botix_robots', JSON.stringify(data.robots));
       }
     } catch (error) {
       console.error('Error loading robots:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to load robots from Transitive Robotics',
-        variant: 'destructive'
-      });
     } finally {
       setIsLoadingRobots(false);
     }
+  };
+
+  const handleAddRobot = (robot) => {
+    const updatedRobots = [...robots, robot];
+    setRobots(updatedRobots);
+    setSelectedRobot(robot);
+    localStorage.setItem('botix_robots', JSON.stringify(updatedRobots));
+    toast({
+      title: 'Robot Added',
+      description: `${robot.name} has been added successfully`,
+    });
   };
 
   const handleConnect = () => {
