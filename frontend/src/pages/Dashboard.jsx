@@ -5,7 +5,7 @@ import RobotSelector from '../components/RobotSelector';
 import JoystickControl from '../components/JoystickControl';
 import StatusCard from '../components/StatusCard';
 import CameraFeed from '../components/CameraFeed';
-import { mockCameras } from '../mock/data';
+import { mockCameras, getCameraStreams } from '../mock/data';
 import robotService from '../services/robotService';
 import '../styles/Dashboard.css';
 import { useToast } from '../hooks/use-toast';
@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [robots, setRobots] = useState([]);
   const [selectedRobot, setSelectedRobot] = useState(null);
   const [isLoadingRobots, setIsLoadingRobots] = useState(false);
+  const [cameraStreams, setCameraStreams] = useState(mockCameras);
   const { toast } = useToast();
 
   // Load robots on mount (check localStorage first)
