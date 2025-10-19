@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './ui/button';
-import { RefreshCw, Robot } from 'lucide-react';
+import { RefreshCw, Bot } from 'lucide-react';
 import '../styles/RobotSelector.css';
 
 const RobotSelector = ({ robots, selectedRobot, onSelectRobot, onRefresh, isLoading }) => {
