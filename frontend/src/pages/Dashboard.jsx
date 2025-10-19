@@ -1,31 +1,101 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import ConnectionCard from '../components/ConnectionCard';
+import RobotSelector from '../components/RobotSelector';
 import JoystickControl from '../components/JoystickControl';
 import StatusCard from '../components/StatusCard';
 import CameraFeed from '../components/CameraFeed';
 import { mockCameras } from '../mock/data';
+import robotService from '../services/robotService';
 import '../styles/Dashboard.css';
+import { useToast } from '../hooks/use-toast';
 
 const Dashboard = () => {
   const [connectionStatus, setConnectionStatus] = useState('Disconnected');
   const [rosbridgeUrl, setRosbridgeUrl] = useState('wss://monitor.bot-ix.com/rosbridge');
   const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
+  const [robots, setRobots] = useState([]);
+  const [selectedRobot, setSelectedRobot] = useState(null);
+  const [isLoadingRobots, setIsLoadingRobots] = useState(false);
+  const { toast } = useToast();
+
+  // Load robots on mount
+  useEffect(() => {
+    loadRobots();
+  }, []);
+
+  const loadRobots = async () => {
+    setIsLoadingRobots(true);
+    try {
+      const data = await robotService.getRobots();
+      if (data.success) {
+        setRobots(data.robots);
+        if (data.robots.length > 0) {
+          setSelectedRobot(data.robots[0]);
+        } else {
+          toast({
+            title: 'No robots found',
+            description: 'No robots are currently registered in Transitive Robotics',
+            variant: 'warning'
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error loading robots:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to load robots from Transitive Robotics',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoadingRobots(false);
+    }
+  };
 
   const handleConnect = () => {
+    if (!selectedRobot) {
+      toast({
+        title: 'No robot selected',
+        description: 'Please select a robot first',
+        variant: 'destructive'
+      });
+      return;
+    }
+    
     // Mock connection
     setConnectionStatus('Connecting...');
     setTimeout(() => {
       setConnectionStatus('Connected');
+      toast({
+        title: 'Connected',
+        description: `Connected to robot: ${selectedRobot.name || selectedRobot.id}`,
+      });
     }, 1500);
   };
 
   const handleDisconnect = () => {
     setConnectionStatus('Disconnected');
+    toast({
+      title: 'Disconnected',
+      description: 'Robot connection closed',
+    });
   };
 
-  const handleJoystickMove = (x, y) => {
+  const handleJoystickMove = async (x, y) => {
     setJoystickPosition({ x, y });
+    
+    // Send velocity command to robot if connected
+    if (connectionStatus === 'Connected' && selectedRobot) {
+      try {
+        await robotService.sendVelocityCommand(
+          selectedRobot.id,
+          y * 0.6,  // linear velocity
+          -x * 0.8  // angular velocity
+        );
+      } catch (error) {
+        console.error('Error sending velocity command:', error);
+      }
+    }
   };
 
   return (
@@ -33,6 +103,15 @@ const Dashboard = () => {
       <Header />
       
       <main className="dashboard-main">
+        {/* Robot Selector */}
+        <RobotSelector 
+          robots={robots}
+          selectedRobot={selectedRobot}
+          onSelectRobot={setSelectedRobot}
+          onRefresh={loadRobots}
+          isLoading={isLoadingRobots}
+        />
+
         {/* Connection Settings */}
         <ConnectionCard 
           rosbridgeUrl={rosbridgeUrl}
@@ -40,6 +119,7 @@ const Dashboard = () => {
           onConnect={handleConnect}
           onDisconnect={handleDisconnect}
           isConnected={connectionStatus === 'Connected'}
+          selectedRobot={selectedRobot}
         />
 
         {/* Control Row */}
@@ -51,6 +131,7 @@ const Dashboard = () => {
           <StatusCard 
             status={connectionStatus}
             joystickPosition={joystickPosition}
+            selectedRobot={selectedRobot}
           />
         </div>
 
