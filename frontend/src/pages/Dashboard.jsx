@@ -55,11 +55,28 @@ const Dashboard = () => {
     setRobots(updatedRobots);
     setSelectedRobot(robot);
     localStorage.setItem('botix_robots', JSON.stringify(updatedRobots));
+    
+    // Update camera streams for the new robot
+    if (robot.manual) {
+      const streams = getCameraStreams(robot.tailscale_ip, robot.video_port);
+      setCameraStreams(streams);
+    }
+    
     toast({
       title: 'Robot Added',
       description: `${robot.name} has been added successfully`,
     });
   };
+
+  // Update camera streams when selected robot changes
+  useEffect(() => {
+    if (selectedRobot && selectedRobot.manual) {
+      const streams = getCameraStreams(selectedRobot.tailscale_ip, selectedRobot.video_port);
+      setCameraStreams(streams);
+    } else {
+      setCameraStreams(mockCameras);
+    }
+  }, [selectedRobot]);
 
   const handleConnect = () => {
     if (!selectedRobot) {
