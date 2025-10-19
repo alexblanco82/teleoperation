@@ -173,28 +173,43 @@ const Dashboard = () => {
         {/* Fleet Map */}
         <FleetMap />
 
-        {/* Camera Grid */}
+        {/* Camera Grid - WebRTC Streams */}
         <div className="camera-grid">
           <div className="camera-row">
-            <CameraFeed 
-              title="USB Camera (Main)"
-              stream={cameraStreams.usb_main}
-              topic="/usb_cam/image_raw"
-              device="/dev/video8"
+            <WebRTCCamera 
+              cameraIndex={0}
+              title="Front Camera"
+              device="/dev/video0"
             />
-            <CameraFeed 
-              title="RealSense Color"
-              stream={cameraStreams.realsense_color}
-              topic="/camera/color/image_raw"
-              device="/dev/video9"
+            <WebRTCCamera 
+              cameraIndex={1}
+              title="Rear Camera"
+              device="/dev/video1"
             />
           </div>
           
-          <div className="camera-full">
-            <CameraFeed 
+          <div className="camera-row">
+            <WebRTCCamera 
+              cameraIndex={2}
+              title="Left Camera"
+              device="/dev/video2"
+            />
+            <WebRTCCamera 
+              cameraIndex={3}
+              title="Right Camera"
+              device="/dev/video3"
+            />
+          </div>
+
+          <div className="camera-row">
+            <WebRTCCamera 
+              cameraIndex={4}
+              title="Internal Camera"
+              device="/dev/video8"
+            />
+            <WebRTCCamera 
+              cameraIndex={5}
               title="RealSense Depth"
-              stream={cameraStreams.realsense_depth}
-              topic="/camera/depth/image_rect_raw"
               device="/dev/video10"
             />
           </div>
